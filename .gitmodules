@@ -1,0 +1,3 @@
+[submodule "rdepartures"]
+	path = rdepartures
+	url = https://github.com/rainygirl/renkuos-rdeparture.git
