@@ -2,7 +2,8 @@
 # Cross-compiles the R Departures screen saver add-on on a workstation with
 # Docker, into dist/<arch>/R Departures.
 #
-#   tools/cross-build.sh x86       gcc2, haiku/cross-compiler:x86_gcc2h-r1beta4
+#   tools/cross-build.sh x86       haiku/cross-compiler:x86_gcc2h-r1beta4; also
+#                                  dist/x86/rdepartures-saver-renderer
 #   tools/cross-build.sh x86_64    haiku/cross-compiler:x86_64-r1beta4
 #   tools/cross-build.sh arm64     container with a Haiku arm64 build tree; also
 #                                  dist/arm64/support/{libscreensaver.so,ScreenSaver}
@@ -12,8 +13,10 @@
 #   ARM64_CONTAINER   default haiku-builder
 #   ARM64_GENERATED   default /root/renku-arm64-work/generated.arm64
 #
-# x86 is built with gcc2, not the hybrid's modern compiler: screen_blanker on
-# an x86_gcc2 hybrid is a gcc2 program and only loads gcc2 add-ons.
+# screen_blanker on an x86_gcc2 hybrid is a gcc2 program and only loads gcc2
+# add-ons. So for x86 the add-on is src/Bridge.cpp alone, built with gcc2, and
+# the boards are src/Renderer.cpp, a program of its own built with the
+# hybrid's x86 compiler.
 set -e
 
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
@@ -49,9 +52,14 @@ build()
 				set -e
 				ln -s /system/develop/headers /tools/cross-tools-x86_gcc2/i586-pc-haiku/sys-include
 				mkdir -p /work && cd /work && tar xf -
-				/tools/cross-tools-x86_gcc2/bin/i586-pc-haiku-g++ $FLAGS \
+				/tools/cross-tools-x86_gcc2/bin/i586-pc-haiku-g++ -O2 -s -Wall \
+					-Wno-multichar -shared -o Saver src/Bridge.cpp \
 					-B/system/develop/lib/ -L/system/develop/lib $LIBS >&2
-				tar cf - Saver" \
+				/tools/cross-tools-x86/bin/i586-pc-haiku-g++ -O2 -s -Wall \
+					-Wno-multichar -Iboard -o rdepartures-saver-renderer \
+					src/Renderer.cpp board/Board.cpp board/Data.cpp \
+					board/Station.cpp -lbe >&2
+				tar cf - Saver rdepartures-saver-renderer" \
 			| tar xf - -C "$OUT"
 		;;
 	x86_64)

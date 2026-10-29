@@ -56,9 +56,11 @@ Haiku에서 `make install`을 실행하면 add-on을 빌드해서 안내판 폰�
 `~/config/non-packaged`에 복사합니다. 32비트 x86 하이브리드에서는 기본 `g++`(gcc2)를
 쓰세요. 그곳의 screen_blanker는 gcc2 add-on만 불러옵니다.
 
-Docker가 있는 작업용 컴퓨터에서는 `tools/cross-build.sh all`이 `dist/x86/`(gcc2),
+Docker가 있는 작업용 컴퓨터에서는 `tools/cross-build.sh all`이 `dist/x86/`,
 `dist/x86_64/`, `dist/arm64/`를 크로스 빌드하고, pkgman-repo의 레시피가 이것을
-패키지로 만듭니다. `make render`는 add-on을 화면 없이 돌려 PNG 파일로 저장하는
+패키지로 만듭니다. x86의 add-on은 작은 gcc2 중계기(`src/Bridge.cpp`)뿐이고, 안내판은
+하이브리드의 x86 컴파일러로 빌드한 `rdepartures-saver-renderer`(`src/Renderer.cpp`)가
+둘이 공유하는 메모리에 그립니다. `make render`는 add-on을 화면 없이 돌려 PNG 파일로 저장하는
 `test/render.cpp`를 빌드합니다. ssh로 확인할 때 씁니다.
 
 ## 관계 없음
