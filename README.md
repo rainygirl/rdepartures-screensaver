@@ -58,8 +58,11 @@ into `~/config/non-packaged`. On a 32-bit x86 hybrid use the default `g++`
 (gcc2): screen_blanker there only loads gcc2 add-ons.
 
 On a workstation with Docker, `tools/cross-build.sh all` cross-builds
-`dist/x86/` (gcc2), `dist/x86_64/` and `dist/arm64/`; the pkgman-repo recipe
-packages those. `make render` builds `test/render.cpp`, which runs the add-on
+`dist/x86/`, `dist/x86_64/` and `dist/arm64/`; the pkgman-repo recipe
+packages those. For x86 the add-on is only a small gcc2 bridge
+(`src/Bridge.cpp`): the boards are `rdepartures-saver-renderer`
+(`src/Renderer.cpp`), built with the hybrid's x86 compiler, which draws into
+memory the two share. `make render` builds `test/render.cpp`, which runs the add-on
 off-screen into a PNG file, for checking it over ssh.
 
 ## Not affiliated

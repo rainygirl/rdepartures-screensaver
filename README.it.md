@@ -61,8 +61,11 @@ tabellone, in `~/config/non-packaged`. Su un ibrido x86 a 32 bit usare il `g++`
 predefinito (gcc2): lì lo screen_blanker carica solo add-on gcc2.
 
 Su una macchina con Docker, `tools/cross-build.sh all` compila in modo
-incrociato `dist/x86/` (gcc2), `dist/x86_64/` e `dist/arm64/`; la ricetta di
-pkgman-repo ne fa i pacchetti. `make render` compila `test/render.cpp`, che fa
+incrociato `dist/x86/`, `dist/x86_64/` e `dist/arm64/`; la ricetta di
+pkgman-repo ne fa i pacchetti. Per x86 l'add-on è solo un piccolo ponte gcc2
+(`src/Bridge.cpp`): i tabelloni li disegna `rdepartures-saver-renderer`
+(`src/Renderer.cpp`), compilato con il compilatore x86 dell'ibrido, in una
+memoria condivisa fra i due. `make render` compila `test/render.cpp`, che fa
 girare l'add-on fuori schermo e lo salva in un file PNG, per controllarlo via
 ssh.
 

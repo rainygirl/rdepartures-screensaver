@@ -59,9 +59,11 @@ Haiku では `make install` でアドオンをビルドし、案内板のフォ�
 `g++` (gcc2) を使ってください。そこの screen_blanker は gcc2 のアドオンしか
 読み込みません。
 
-Docker のある作業用マシンでは `tools/cross-build.sh all` で `dist/x86/` (gcc2)、
+Docker のある作業用マシンでは `tools/cross-build.sh all` で `dist/x86/`、
 `dist/x86_64/`、`dist/arm64/` をクロスビルドし、pkgman-repo のレシピがそれを
-パッケージにします。`make render` は、アドオンを画面なしで動かして PNG ファイルに
+パッケージにします。x86 のアドオンは小さな gcc2 の中継 (`src/Bridge.cpp`) だけで、
+案内板はハイブリッドの x86 コンパイラでビルドした `rdepartures-saver-renderer`
+(`src/Renderer.cpp`) が、両者の共有メモリに描きます。`make render` は、アドオンを画面なしで動かして PNG ファイルに
 保存する `test/render.cpp` をビルドします。ssh 越しの確認用です。
 
 ## 無関係であること

@@ -6,8 +6,9 @@
  * screen saver cannot be clicked, so here it is picked in ScreenSaver
  * preferences and kept in the saver's settings.
  *
- * Written so that gcc2 builds it: on an x86_gcc2 hybrid the screen_blanker
- * only loads add-ons of the primary architecture. No C++11.
+ * The packaged x86_gcc2 build is src/Bridge.cpp and src/Renderer.cpp
+ * instead; this file still builds with gcc2 for "make install" there.
+ * No C++11.
  */
 
 #include "Board.h"
