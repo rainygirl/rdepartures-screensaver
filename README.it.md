@@ -77,8 +77,7 @@ aeroporti o ferrovie.
 
 ## Uso dell'IA
 
-R Departures è stato sviluppato con l'aiuto di strumenti di programmazione con
-IA (Claude di Anthropic).
+Parti di R Departures sono state sviluppate con l'aiuto di strumenti di programmazione basati sull'IA (Claude di Anthropic). Tutto il codice è stato rivisto e testato dall'autore.
 
 ## Licenza
 

@@ -72,8 +72,8 @@ are included, and nothing here is endorsed by any airline, airport or railway.
 
 ## AI disclosure
 
-R Departures was developed with the assistance of AI coding tools (Anthropic's
-Claude).
+Parts of R Departures were developed with the assistance of AI coding tools
+(Anthropic's Claude). All code has been reviewed and tested by the author.
 
 ## License
 

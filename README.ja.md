@@ -73,8 +73,8 @@ Docker のある作業用マシンでは `tools/cross-build.sh all` で `dist/x8
 
 ## AI の利用について
 
-R Departures は AI コーディングツール (Anthropic の Claude) の支援を受けて
-開発しました。
+R Departures の一部は AI コーディングツール (Anthropic の Claude) の支援を受けて開発しました。
+すべてのコードは作者がレビューし、テストしています。
 
 ## ライセンス
 

@@ -68,9 +68,10 @@ Docker가 있는 작업용 컴퓨터에서는 `tools/cross-build.sh all`이 `dis
 항공사 이름과 색상은 안내판처럼 보이게 하려고 쓴 것입니다. 로고는 넣지 않았고,
 어느 항공사나 공항, 철도 회사도 이 프로그램을 승인하지 않았습니다.
 
-## AI 고지
+## AI 사용 고지
 
-R Departures는 AI 코딩 도구(Anthropic의 Claude)의 도움을 받아 개발되었습니다.
+R Departures의 일부는 AI 코딩 도구(Anthropic Claude)의 도움을 받아 개발했습니다.
+모든 코드는 작성자가 검토하고 테스트했습니다.
 
 ## 라이선스
 
